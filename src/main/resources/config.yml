@@ -1,0 +1,13 @@
+# Colores con & (ej: &a verde, &c rojo, &f blanco, &7 gris). {player} = nombre del jugador.
+# Déjalo vacío ('') para no mostrar nada.
+
+# Cuando un jugador entra (si hay AuthMe, se muestra al iniciar sesión).
+join-message: '&a[+] &f{player} &7ha entrado.'
+
+# Cuando un jugador sale.
+quit-message: '&c[-] &f{player} &7ha salido.'
+
+# Formato del chat (MiniMessage: <red>, <gray>, <bold>, <#ff8800>...).
+# <head> = cabeza del jugador, <prefix> = prefijo de su rol en LuckPerms,
+# <player> = nombre, <message> = lo que escribió.
+chat-format: '<head> <prefix><white><player></white><gray>:</gray> <message>'

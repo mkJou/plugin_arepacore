@@ -1,0 +1,7 @@
+name: arepaCore
+version: '${project.version}'
+main: com.arepalandia.core.ArepaCore
+api-version: '26.3'
+description: Plugin propio de ArepaLandia
+authors: [ArepaLandia]
+softdepend: [AuthMe, LuckPerms]
