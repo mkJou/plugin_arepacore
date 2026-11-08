@@ -1,13 +1,127 @@
-# Colores con & (ej: &a verde, &c rojo, &f blanco, &7 gris). {player} = nombre del jugador.
-# Déjalo vacío ('') para no mostrar nada.
+# ============================================================
+#  arepaCore — configuración
+#  Colores: códigos & (&a verde, &c rojo, &e amarillo, &6 dorado, &7 gris, &l negrita)
+#  o MiniMessage (<red>, <bold>, <#ff8800>...) si el texto no tiene ningún '&'.
+#  Después de cambiar algo: /arepa reload
+# ============================================================
 
-# Cuando un jugador entra (si hay AuthMe, se muestra al iniciar sesión).
+prefijo: '&6[Arepa] &r'
+# Zona horaria para la recompensa diaria, la XP de fin de semana y el ranking semanal.
+zona-horaria: 'America/Caracas'
+
+# ---------- Entrada / salida / chat ----------
+# {player} = nombre del jugador. Déjalo vacío ('') para no mostrar nada.
 join-message: '&a[+] &f{player} &7ha entrado.'
-
-# Cuando un jugador sale.
 quit-message: '&c[-] &f{player} &7ha salido.'
-
-# Formato del chat (MiniMessage: <red>, <gray>, <bold>, <#ff8800>...).
-# <head> = cabeza del jugador, <prefix> = prefijo de su rol en LuckPerms,
-# <player> = nombre, <message> = lo que escribió.
+# <head> = cabeza, <prefix> = prefijo de LuckPerms, <player> = nombre, <message> = mensaje.
 chat-format: '<head> <prefix><white><player></white><gray>:</gray> <message>'
+
+# Mensaje privado al entrar (solo lo ve el que entra). {player}, {dia}
+bienvenida:
+  - '&6Bienvenido a &e&lArepaLandia&6, &e{player}&6!'
+  - '&7Día &e{dia} &7del mundo. Escribe &e/ayuda &7para ver los comandos.'
+
+# ---------- MOTD (lista de servidores) ----------
+# Máximo 2 líneas. {dia} = día del mundo, {jugadores} = conectados.
+motd:
+  lineas:
+    - '&b&l&m-----------[&r&6&l ArepaLandia &b&l&m]-----------'
+    - '&e&lTe tiene &fque gustar la arepa &8| &7Día &e{dia}'
+  # 0 = no cambiar el máximo que se muestra.
+  maximo-jugadores: 200
+
+# ---------- Teletransportes ----------
+teletransporte:
+  # Segundos de espera antes de teletransportar (se cancela si te mueves o te pegan).
+  espera-segundos: 3
+tpa:
+  expira-segundos: 60
+homes:
+  maximo: 3
+  # Si mueres sin cama ni ancla de reaparición, apareces en tu casa "casa".
+  reaparecer-en-casa: true
+# El spawn lo fija un admin con /setspawn (si no, se usa el spawn del mundo).
+
+# ---------- Talar árboles ----------
+talar:
+  activado: true
+  requiere-agacharse: true
+  maximo-troncos: 200
+
+# ---------- Muertes ----------
+# {player} = el que murió, {killer} = quién o qué lo mató.
+muertes:
+  activado: true
+  mensajes:
+    caida:
+      - '{player} creyó que sabía volar.'
+      - '{player} confió demasiado en la gravedad.'
+      - '{player} se dio un abrazo con el suelo.'
+    lava:
+      - '{player} se fue a nadar en lava. Spoiler: no se puede.'
+      - '{player} quedó tostadito como una arepa.'
+    fuego:
+      - '{player} se puso demasiado picante.'
+      - '{player} ardió como en budare.'
+    ahogado:
+      - '{player} olvidó que necesitaba respirar.'
+      - '{player} se quiso hacer pez.'
+    explosion:
+      - '{player} recibió un abrazo explosivo.'
+      - '{player} salió volando en pedacitos.'
+    mob:
+      - '{player} perdió una discusión con {killer}.'
+      - '{player} fue el almuerzo de {killer}.'
+      - '{killer} le dio una lección a {player}.'
+    jugador:
+      - '{killer} mandó a {player} de vuelta al spawn.'
+      - '{player} confió en {killer}. Error.'
+    vacio:
+      - '{player} se cayó del mundo.'
+    hambre:
+      - '{player} se olvidó de comer. ¿Una arepita?'
+    congelado:
+      - '{player} se quedó como un helado.'
+    otro:
+      - '{player} murió de forma misteriosa.'
+      - '{player} pasó a mejor vida.'
+
+# ---------- Eventos ----------
+eventos:
+  xp-doble:
+    # XP doble automática sábado y domingo. También: /arepa evento xp on|off|auto
+    fines-de-semana: true
+  noche-de-sangre:
+    activado: true
+    # Probabilidad de que una noche sea de sangre (0.1 = 10%). También: /arepa evento sangre on|off
+    probabilidad: 0.1
+
+# ---------- Recompensa diaria ----------
+recompensa-diaria:
+  activado: true
+  # MATERIAL:cantidad
+  items:
+    - 'BREAD:8'
+    - 'COOKED_BEEF:4'
+    - 'TORCH:16'
+  experiencia: 50
+  mensaje: '&a¡Recompensa diaria recibida! Vuelve mañana por más.'
+
+# ---------- Días y AFK ----------
+dias:
+  anunciar-amanecer: true
+  mensaje: '&6☀ &eAmanece el día &6{dia} &een ArepaLandia.'
+afk:
+  # Minutos sin moverse para marcar AFK (0 = desactivado).
+  minutos: 5
+
+# ---------- Anuncios automáticos ----------
+anuncios:
+  cada-minutos: 15
+  mensajes:
+    - '&6[Tip] &7Protege tu base: haz clic en dos esquinas con una &epala de oro&7. Con &e/trust <amigo> &7le das permiso.'
+    - '&6[Tip] &7Mira el mapa del mundo en vivo: &ehttp://108.181.55.14:8270'
+    - '&6[Tip] &7Si mueres, tus cosas quedan en una &etumba&7. Usa &e/back &7para volver.'
+    - '&6[Tip] &7Agáchate y rompe un tronco con el hacha para &etalar el árbol entero&7.'
+    - '&6[Tip] &7¿Quién juega más? Mira &e/top horas semana&7.'
+    - '&6[Tip] &7Instala el mod &eSimple Voice Chat &7para hablar por proximidad.'

@@ -5,3 +5,115 @@ api-version: '26.3'
 description: Plugin propio de ArepaLandia
 authors: [ArepaLandia]
 softdepend: [AuthMe, LuckPerms]
+
+commands:
+  sethome:
+    description: Guarda una casa donde estás
+    usage: /sethome [nombre]
+    permission: arepa.homes
+  home:
+    description: Vuelve a una de tus casas
+    usage: /home [nombre]
+    permission: arepa.homes
+  delhome:
+    description: Borra una casa
+    usage: /delhome [nombre]
+    aliases: [deletehome]
+    permission: arepa.homes
+  homes:
+    description: Lista tus casas
+    permission: arepa.homes
+  tpa:
+    description: Pide teletransportarte a un jugador
+    usage: /tpa <jugador>
+    permission: arepa.tpa
+  tpahere:
+    description: Pide que un jugador venga a ti
+    usage: /tpahere <jugador>
+    permission: arepa.tpa
+  tpaccept:
+    description: Acepta una solicitud de teletransporte
+    aliases: [tpyes]
+    permission: arepa.tpa
+  tpdeny:
+    description: Rechaza una solicitud de teletransporte
+    aliases: [tpno]
+    permission: arepa.tpa
+  tpacancel:
+    description: Cancela tus solicitudes enviadas
+    permission: arepa.tpa
+  spawn:
+    description: Ve al spawn
+    permission: arepa.spawn
+  setspawn:
+    description: Fija el spawn donde estás
+    permission: arepa.admin
+  back:
+    description: Vuelve a tu última ubicación o a donde moriste
+    permission: arepa.back
+  msg:
+    description: Mensaje privado
+    usage: /msg <jugador> <mensaje>
+    aliases: [tell, w, whisper, m]
+    permission: arepa.msg
+  r:
+    description: Responde al último mensaje privado
+    aliases: [reply]
+    permission: arepa.msg
+  stats:
+    description: Estadísticas de un jugador
+    usage: /stats [jugador]
+    aliases: [estadisticas]
+    permission: arepa.stats
+  top:
+    description: Ranking del server
+    usage: /top <horas|muertes|mobs|bloques|diamantes> [semana]
+    aliases: [ranking]
+    permission: arepa.stats
+  dia:
+    description: Día actual del mundo
+    aliases: [day]
+    permission: arepa.dia
+  afk:
+    description: Activa o quita el modo AFK
+    permission: arepa.afk
+  arepa:
+    description: Ayuda y administración de ArepaCore
+    usage: /arepa [ayuda|reload|evento]
+    aliases: [ayuda]
+  freeze:
+    description: Congela o descongela a un jugador
+    usage: /freeze <jugador>
+    permission: arepa.admin
+  invsee:
+    description: Abre el inventario de un jugador
+    usage: /invsee <jugador>
+    permission: arepa.admin
+  endersee:
+    description: Abre el cofre de ender de un jugador
+    usage: /endersee <jugador>
+    permission: arepa.admin
+
+permissions:
+  arepa.jugador:
+    description: Comandos normales de jugador
+    default: true
+    children:
+      arepa.homes: true
+      arepa.tpa: true
+      arepa.spawn: true
+      arepa.back: true
+      arepa.msg: true
+      arepa.stats: true
+      arepa.dia: true
+      arepa.afk: true
+  arepa.admin:
+    description: Comandos de administración
+    default: op
+    children:
+      arepa.homes.ilimitadas: true
+      arepa.bypass.espera: true
+  arepa.homes.ilimitadas:
+    default: op
+  arepa.bypass.espera:
+    default: false

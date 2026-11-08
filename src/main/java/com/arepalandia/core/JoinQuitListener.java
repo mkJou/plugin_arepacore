@@ -90,6 +90,7 @@ final class JoinQuitListener implements Listener {
         if (player == null || !announced.add(player.getUniqueId())) {
             return;
         }
+        plugin.daily().onReady(player);
         Component message = format("join-message", player);
         if (message == null) {
             return;
